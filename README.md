@@ -4,7 +4,11 @@ Sgúen etsduios raleziaods por la Uivenrsdiad ignlsea de Cmdibrage, no ipmotra e
 
 Cuaquleir tetxo se pduee leer... si se respetan la primera y la última letra de cada palabra
 
-## Instalaciones
+## Entorno de navegador
+
+- [Project IDX](https://idx.dev/)
+
+## Instalaciones locales
 
 - [Git](https://git-scm.com/)
 - [NVM for Windows](https://github.com/coreybutler/nvm-windows/releases)
