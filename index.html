@@ -7,19 +7,21 @@
   <link href='/style.css' rel='stylesheet'>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
+  <h1>Consola</h1>
   <p>
     <output id="consola"></output>
   </p>
+  <script defer type="text/javascript" src="/main.js"></script>
   <script>
     let consola = document.getElementById('consola');
     function log(message) {
       consola.innerHTML += message + '<br>';
     }
-    log('hola mundo');
-    console.log('hola mundo')
   </script>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <script>
+    log('hola mundooooooo');
+    log('otra linea');
+
+  </script>
 </body>
 </html>
