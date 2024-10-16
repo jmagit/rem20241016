@@ -9,6 +9,17 @@
 <body>
   <h1>Hello, world!</h1>
   <button onclick="console.log('hello');">Press me</button>
+  <p>
+    <output id="consola"></output>
+  </p>
+  <script>
+    let consola = document.getElementById('consola');
+    function log(message) {
+      consola.innerHTML += message + '<br>';
+    }
+    log('hola mundo');
+    console.log('hola mundo')
+  </script>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
