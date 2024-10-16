@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hello World</title>
   <link href='/style.css' rel='stylesheet'>
 </head>
+
 <body>
   <h1>Consola</h1>
   <p>
@@ -13,7 +15,7 @@
   </p>
   <script defer type="text/javascript" src="/ejemplos.js"></script>
   <script defer type="text/javascript" src="/ejemplos1.js"></script>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <!-- <script defer type="text/javascript" src="/main.js"></script> -->
   <script>
     let consola = document.getElementById('consola');
     function log(message) {
@@ -21,8 +23,34 @@
     }
   </script>
   <script>
+    /*
     log('hola mundooooooo');
     log('otra linea');
+    */
+    num = 0
+    if (num) {
+      log(10 / num + 100)
+    } else {
+      log('Divide by 0')
+    }
+    log(`El resultado de 100 / ${num} 
+    es ${100/num}`)
+    log(`El resultado de 100 / ` + num + `es ${100/num}`)
+    a = 2
+    b = '2'
+    log(a == b)
+    try {      
+      log(a === bb)
+    } catch (error) {
+      log(error.message)
+    }
+    log(a + parseInt(b))
+    log(+a + +b)
+    log(a * b)
+    b = 2
+    log(a + -b)
+    
   </script>
 </body>
+
 </html>
