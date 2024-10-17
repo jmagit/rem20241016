@@ -1,4 +1,7 @@
-function cotilla() {
+// function cotilla() {
+//     log('Soy ejemplos.js')
+// }
+const cotilla = function() {
     log('Soy ejemplos.js')
 }
 'use strict'
