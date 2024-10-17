@@ -1,6 +1,6 @@
 'use strict' 
 // Add JS here
-// log('algo')
+// logInfo('algo')
 // cotilla()
-log('fin')
+logInfo('cargo main.js')
 var cc = 'creada en main.js'

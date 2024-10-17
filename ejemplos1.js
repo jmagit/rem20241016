@@ -2,5 +2,6 @@
 //     log('Soy ejemplossssssssssss1.js')
 // }
 const cotilla = function() {
-    log('Soy ejemplossssssssssss1.js')
+    logInfo('Soy ejemplossssssssssss1.js')
 }
+logInfo('Cargo ejemplos1.js')
