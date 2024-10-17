@@ -49,26 +49,39 @@
     // log(a * b)
     // b = 2
     // log(a + -b)
-    a = 1
-    log(++a < 2)
-    log(a)
-    a = 1
-    log(a++ < 2)
-    log(a)
-    log(typeof (a))
-    a = '1'
-    log(typeof (a))
-    log(typeof (a) === 'string' ? 'Cadena' : typeof (a) === 'number' ? 'Numero' : 'Otra cosa')
-    log((typeof (a) === 'string' ? 'Cadena' : 'Otra cosa') + ' el tipo')
-    if (typeof (a) === 'string') {
-      log('Cadena')
-      if (a === '1')
-        log('es uno')
-    } else {
-      log('Otra cosa')
+    // a = 1
+    // log(++a < 2)
+    // log(a)
+    // a = 1
+    // log(a++ < 2)
+    // log(a)
+    // log(typeof (a))
+    // a = '1'
+    // log(typeof (a))
+    // log(typeof (a) === 'string' ? 'Cadena' : typeof (a) === 'number' ? 'Numero' : 'Otra cosa')
+    // log((typeof (a) === 'string' ? 'Cadena' : 'Otra cosa') + ' el tipo')
+    // if (typeof (a) === 'string') {
+    //   log('Cadena')
+    //   if (a === '1')
+    //     log('es uno')
+    // } else {
+    //   log('Otra cosa')
+    // }
+    // log('algo mas')
+    // log(typeof (+a))
+    function kk() {
+      var a = 1;
+      if(true) {
+        var b = 2;
+      }
+      c = a + b;
+      return c;
     }
-    log('algo mas')
-    log(typeof (+a))
+    if(kk() === c) {
+      log(`si es ${c}`)
+    } else {
+      log('no')      
+    }
   </script>
 </body>
 
