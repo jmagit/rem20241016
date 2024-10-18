@@ -50,53 +50,53 @@
     obj.edad = 23
     // logInfo(JSON.stringify(obj))
     var apellidos = 'GLOBAL'
-    // function Persona(nombre, apellidos, telefonos, edad) {
-    //   var self = this
-    //   this.nombre = nombre
-    //   this.apellidos = apellidos
-    //   this.telefonos = telefonos
-    //   this.edad = edad
-    //   this.toUpper = function() {
-    //     console.log(this)
-    //     self.nombre = self.nombre.toUpperCase()
-    //     self.apellidos = self.apellidos.toUpperCase()
-    //   }
-    //   // this.toUpper = this.toUpper.bind(this)
-    // }
-    // Persona.prototype.edadJubilacion = 67
-    // Persona.prototype.fullname = function () {
-    //   return this.nombre + ' ' + this.apellidos
-    // }
-    // Persona.prototype.tieneTelefonos = function () {
-    //   return this.telefonos && this.telefonos.length > 0
-    // }
-    // Persona.prototype.estaJubilado = function () {
-    //   return !isNaN(+this.edad) && this.edad > this.edadJubilacion
-    // }
-    class Persona {
-      constructor(nombre, apellidos, telefonos, edad) {
-        this.nombre = nombre
-        this.apellidos = apellidos
-        this.telefonos = telefonos
-        this.edad = edad
-        // this.toUpper = this.toUpper.bind(this)
-        this.edadJubilacion = 67
-      }
-      toUpper() {
+    function Persona(nombre, apellidos, telefonos, edad) {
+      var self = this
+      this.nombre = nombre
+      this.apellidos = apellidos
+      this.telefonos = telefonos
+      this.edad = edad
+      this.toUpper = function() {
         console.log(this)
-        this.nombre = this.nombre.toUpperCase()
-        this.apellidos = this.apellidos.toUpperCase()
+        self.nombre = self.nombre.toUpperCase()
+        self.apellidos = self.apellidos.toUpperCase()
       }
-      fullname() {
-        return this.nombre + ' ' + this.apellidos
-      }
-      tieneTelefonos() {
-        return this.telefonos && this.telefonos.length > 0
-      }
-      estaJubilado() {
-        return !isNaN(+this.edad) && this.edad > this.edadJubilacion
-      }
+      // this.toUpper = this.toUpper.bind(this)
     }
+    Persona.prototype.edadJubilacion = 67
+    Persona.prototype.fullname = function () {
+      return this.nombre + ' ' + this.apellidos
+    }
+    Persona.prototype.tieneTelefonos = function () {
+      return this.telefonos && this.telefonos.length > 0
+    }
+    Persona.prototype.estaJubilado = function () {
+      return !isNaN(+this.edad) && this.edad > this.edadJubilacion
+    }
+    // class Persona {
+    //   constructor(nombre, apellidos, telefonos, edad) {
+    //     this.nombre = nombre
+    //     this.apellidos = apellidos
+    //     this.telefonos = telefonos
+    //     this.edad = edad
+    //     // this.toUpper = this.toUpper.bind(this)
+    //     this.edadJubilacion = 67
+    //   }
+    //   toUpper() {
+    //     console.log(this)
+    //     this.nombre = this.nombre.toUpperCase()
+    //     this.apellidos = this.apellidos.toUpperCase()
+    //   }
+    //   fullname() {
+    //     return this.nombre + ' ' + this.apellidos
+    //   }
+    //   tieneTelefonos() {
+    //     return this.telefonos && this.telefonos.length > 0
+    //   }
+    //   estaJubilado() {
+    //     return !isNaN(+this.edad) && this.edad > this.edadJubilacion
+    //   }
+    // }
 
     // function Empleado(nombre, apellidos, telefonos, edad) {
     //   this.nombre = nombre
@@ -109,12 +109,12 @@
 
     var p1 = new Persona('Pepito', 'Grillo', ["555 111 111", '555 777 123'], 23)
     // logInfo(JSON.stringify(p1))
-    muestra('p1', p1)
+    // muestra('p1', p1)
     var p2 = new Persona('Carmelo', 'Coton')
     // var p2 = Persona.apply({}, ['Carmelo', 'Coton'])
     // console.log(window)
     // logInfo(JSON.stringify(p2))
-    muestra('p2', p2)
+    // muestra('p2', p2)
     // p2.fullname = function () {
     //     return this.apellidos + ', ' + this.nombre
     //   }
@@ -134,11 +134,17 @@
     personas.push(p2)
     p2.edad = 68
     // logInfo(JSON.stringify(personas))
-    p1.toUpper()
+    // p1.toUpper()
     // var fn = p2.toUpper
     // // fn.call(p2)
     // fn()
-    for (var indice in personas) {
+    personas.forEach(function (p) {
+      p.toUpper()
+
+    })
+    for (var indice in personas.filter(function (p) {
+      return p.estaJubilado()
+    })) {
       logInfo(personas[indice].fullname() +
         (personas[indice].tieneTelefonos() ? ' con' : ' sin') + ' telefonos' +
         (personas[indice].estaJubilado() ? ' y esta jubilado' : ' y no esta jubilado')
@@ -148,6 +154,21 @@
     logInfo(p1.tieneTelefonos === p2.tieneTelefonos ? 'si' : 'no')
     // logInfo(typeof(Persona))
     // console.log(Persona)
+    logInfo(p1 instanceof Persona)
+    // var exp = "2 + 2"
+    // exp += '* 2'
+    // logInfo(eval(exp))
+    // exp = 'p2.toUpper()'
+    // delete p2.nombre
+    muestra('p2', p2)
+    var nuevos = personas.map(function (p) {
+      return {
+        nombre: p.fullname(),
+        activo: !p.estaJubilado()
+      }
+    })
+    logInfo(JSON.stringify(nuevos))
+
 
   </script>
 </body>
