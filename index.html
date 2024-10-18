@@ -51,10 +51,17 @@
     // logInfo(JSON.stringify(obj))
 
     function Persona(nombre, apellidos, telefonos, edad) {
+      var self = this
       this.nombre = nombre
       this.apellidos = apellidos
       this.telefonos = telefonos
       this.edad = edad
+      this.toUpper = function() {
+        console.log(this)
+        self.nombre = self.nombre.toUpperCase()
+        self.apellidos = self.apellidos.toUpperCase()
+      }
+      // this.toUpper = this.toUpper.bind(this)
     }
     Persona.prototype.edadJubilacion = 67
     Persona.prototype.fullname = function () {
@@ -64,7 +71,7 @@
       return this.telefonos && this.telefonos.length > 0
     }
     Persona.prototype.estaJubilado = function () {
-      return this.edad != undefined && this.edad > this.edadJubilacion
+      return !isNaN(+this.edad) && this.edad > this.edadJubilacion
     }
     function Empleado(nombre, apellidos, telefonos, edad) {
       this.nombre = nombre
@@ -79,17 +86,18 @@
     // logInfo(JSON.stringify(p1))
     muestra('p1', p1)
     var p2 = new Persona('Carmelo', 'Coton')
-    console.log(window)
+    // var p2 = Persona.apply({}, ['Carmelo', 'Coton'])
+    // console.log(window)
     // logInfo(JSON.stringify(p2))
     muestra('p2', p2)
     // p2.fullname = function () {
     //     return this.apellidos + ', ' + this.nombre
     //   }
 
-    p1.edas = 'otro'
-    p1.telefonos = function() {}
-    // logInfo(JSON.stringify(p1))
-    muestra('p1', p1)
+    // p1.edas = 'otro'
+    // // p1.telefonos = function() {}
+    // // logInfo(JSON.stringify(p1))
+    // muestra('p1', p1)
     // for(var indice in obj) {
     //   logInfo(indice)
     // }
@@ -99,11 +107,16 @@
     var personas = []
     personas.push(p1)
     personas.push(p2)
+    p2.edad = 68
     // logInfo(JSON.stringify(personas))
+    p1.toUpper()
+    // var fn = p2.toUpper
+    // // fn.call(p2)
+    // fn()
     for (var indice in personas) {
       logInfo(personas[indice].fullname() + 
-        (personas[indice].tieneTelefonos ? ' con' : ' sin') + ' telefonos' +
-        (personas[indice].estaJubilado ? ' y esta jubilado' : ' y no esta jubilado')
+        (personas[indice].tieneTelefonos() ? ' con' : ' sin') + ' telefonos' +
+        (personas[indice].estaJubilado() ? ' y esta jubilado' : ' y no esta jubilado')
       )
     }
     logInfo(p1.fullname === p2.fullname ?'si':'no')
