@@ -27,8 +27,8 @@
   <script>
     function muestra(nom, obj) {
       logInfo(nom + '{')
-      for(var indice in obj) {
-        logInfo('&nbsp;&nbsp;&nbsp;' + indice + ': ' + obj[indice] )
+      for (var indice in obj) {
+        logInfo('&nbsp;&nbsp;&nbsp;' + indice + ': ' + obj[indice])
       }
       logInfo('}')
     }
@@ -49,38 +49,63 @@
     obj.apellidos = 'GRILLO'
     obj.edad = 23
     // logInfo(JSON.stringify(obj))
-
-    function Persona(nombre, apellidos, telefonos, edad) {
-      var self = this
-      this.nombre = nombre
-      this.apellidos = apellidos
-      this.telefonos = telefonos
-      this.edad = edad
-      this.toUpper = function() {
-        console.log(this)
-        self.nombre = self.nombre.toUpperCase()
-        self.apellidos = self.apellidos.toUpperCase()
+    var apellidos = 'GLOBAL'
+    // function Persona(nombre, apellidos, telefonos, edad) {
+    //   var self = this
+    //   this.nombre = nombre
+    //   this.apellidos = apellidos
+    //   this.telefonos = telefonos
+    //   this.edad = edad
+    //   this.toUpper = function() {
+    //     console.log(this)
+    //     self.nombre = self.nombre.toUpperCase()
+    //     self.apellidos = self.apellidos.toUpperCase()
+    //   }
+    //   // this.toUpper = this.toUpper.bind(this)
+    // }
+    // Persona.prototype.edadJubilacion = 67
+    // Persona.prototype.fullname = function () {
+    //   return this.nombre + ' ' + this.apellidos
+    // }
+    // Persona.prototype.tieneTelefonos = function () {
+    //   return this.telefonos && this.telefonos.length > 0
+    // }
+    // Persona.prototype.estaJubilado = function () {
+    //   return !isNaN(+this.edad) && this.edad > this.edadJubilacion
+    // }
+    class Persona {
+      constructor(nombre, apellidos, telefonos, edad) {
+        this.nombre = nombre
+        this.apellidos = apellidos
+        this.telefonos = telefonos
+        this.edad = edad
+        // this.toUpper = this.toUpper.bind(this)
+        this.edadJubilacion = 67
       }
-      // this.toUpper = this.toUpper.bind(this)
+      toUpper() {
+        console.log(this)
+        this.nombre = this.nombre.toUpperCase()
+        this.apellidos = this.apellidos.toUpperCase()
+      }
+      fullname() {
+        return this.nombre + ' ' + this.apellidos
+      }
+      tieneTelefonos() {
+        return this.telefonos && this.telefonos.length > 0
+      }
+      estaJubilado() {
+        return !isNaN(+this.edad) && this.edad > this.edadJubilacion
+      }
     }
-    Persona.prototype.edadJubilacion = 67
-    Persona.prototype.fullname = function () {
-      return this.nombre + ' ' + this.apellidos
-    }
-    Persona.prototype.tieneTelefonos = function () {
-      return this.telefonos && this.telefonos.length > 0
-    }
-    Persona.prototype.estaJubilado = function () {
-      return !isNaN(+this.edad) && this.edad > this.edadJubilacion
-    }
-    function Empleado(nombre, apellidos, telefonos, edad) {
-      this.nombre = nombre
-      this.apellidos = apellidos
-      this.telefonos = telefonos
-      this.edad = edad
-    }
-    Empleado.prototype = Persona.prototype
-    Empleado.prototype.otra = 67
+
+    // function Empleado(nombre, apellidos, telefonos, edad) {
+    //   this.nombre = nombre
+    //   this.apellidos = apellidos
+    //   this.telefonos = telefonos
+    //   this.edad = edad
+    // }
+    // Empleado.prototype = Persona.prototype
+    // Empleado.prototype.otra = 67
 
     var p1 = new Persona('Pepito', 'Grillo', ["555 111 111", '555 777 123'], 23)
     // logInfo(JSON.stringify(p1))
@@ -114,13 +139,16 @@
     // // fn.call(p2)
     // fn()
     for (var indice in personas) {
-      logInfo(personas[indice].fullname() + 
+      logInfo(personas[indice].fullname() +
         (personas[indice].tieneTelefonos() ? ' con' : ' sin') + ' telefonos' +
         (personas[indice].estaJubilado() ? ' y esta jubilado' : ' y no esta jubilado')
       )
     }
-    logInfo(p1.fullname === p2.fullname ?'si':'no')
-    logInfo(p1.tieneTelefonos === p2.tieneTelefonos ?'si':'no')
+    logInfo(p1.fullname === p2.fullname ? 'si' : 'no')
+    logInfo(p1.tieneTelefonos === p2.tieneTelefonos ? 'si' : 'no')
+    // logInfo(typeof(Persona))
+    // console.log(Persona)
+
   </script>
 </body>
 
