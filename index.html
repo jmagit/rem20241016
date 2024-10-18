@@ -13,9 +13,9 @@
   <p>
     <output id="consola"></output>
   </p>
-  <script defer type="text/javascript" src="ejemplos.js"></script>
-  <!-- <script defer type="text/javascript" src="ejemplos1.js"></script> -->
-  <script defer type="text/javascript" src="main.js"></script>
+  <!-- <script defer type="text/javascript" src="ejemplos.js"></script>
+  <script defer type="text/javascript" src="ejemplos1.js"></script>
+  <script defer type="text/javascript" src="main.js"></script> -->
   <script>
     let consola = document.getElementById('consola');
     function logInfo(message) {
@@ -25,79 +25,89 @@
     }
   </script>
   <script>
-    var valor = 0;
-    function propiedad(value) {
-      if(arguments.length) {
-        valor = value;
-      } else {
-        return valor;
-      }      
-    }
-    function param(a, b) {
-      logInfo(`a: ${a}`);
-      logInfo(`b: ${b}`);
-      logInfo(`parametros: ${arguments.callee.length} argumentos: ${arguments.length}`);
-      logInfo(JSON.stringify(arguments));
-      
-    }
-    function paramReparte({a, b}) {
-      logInfo(`a: ${a}`);
-      logInfo(`b: ${b}`);
-    }
-    function paramDefecto(a = 1, b = 2) {
-      logInfo(`a: ${a}`);
-      logInfo(`b: ${b}`);
-      logInfo(`parametros: ${arguments.callee.length} argumentos: ${arguments.length}`);
-      logInfo(JSON.stringify(arguments));
-      
-    }
-    function avg() {
-      var rslt = 0;
-      for (var i = 0; i < arguments.length; i++) {
-        rslt += arguments[i];
+    function muestra(nom, obj) {
+      logInfo(nom + '{')
+      for(var indice in obj) {
+        logInfo('&nbsp;&nbsp;&nbsp;' + indice + ': ' + obj[indice] )
       }
-      return arguments.length ? (rslt / arguments.length) : 0;
+      logInfo('}')
     }
-    function avg2(n = 0, ...args) {
-      var rslt = n;
-      for (var i = 0; i < args.length; i++) {
-        rslt += arguments[i];
-      }
-      return arguments.length ? (rslt / (args.length + 1)) : 0;
+    var obj = {}
+    obj.id = 1
+    obj.nombre = 'Pepito'
+    obj.apellidos = 'Grillo'
+    obj.fullname = function () {
+      return this.nombre + ' ' + this.apellidos
     }
+    obj.telefonos = ["555 111 111", '555 777 123']
+    obj.direccion = {
+      calle: 'Pez volador',
+      cp: '8080',
+      provincia: 'Barcelona'
+    }
+    // logInfo(obj.fullname())
+    obj.apellidos = 'GRILLO'
+    obj.edad = 23
+    // logInfo(JSON.stringify(obj))
 
-    let tab = [10, 20, 30, 40]
-    let obj = { a: 100, b: 200 }
-    let fn = avg
-    fn = param
-    fn = function(item) { return item * 2 }
-    fn = item => item * 2
-    fn = () => 2 * 2
-    fn = (a, b) => a * b
-    fn = item => {
-      // ...
-      return item * 2
+    function Persona(nombre, apellidos, telefonos, edad) {
+      this.nombre = nombre
+      this.apellidos = apellidos
+      this.telefonos = telefonos
+      this.edad = edad
     }
-    tab.filter(item => item > 20)
-    // logInfo(avg2(5, ...tab));
-    // logInfo(avg(1, 3, 5, 8));
-    // logInfo(avg(4, 6, 8, 1, 2, 3, 4, 5));
-    // logInfo(param(...obj));
-    // logInfo(paramDefecto(7));
-    //logInfo(paramReparte(obj));
-    // param(1, 2, 3);
-    // param(1);
-    // param();
-    // logInfo(`propiedad: ${propiedad()}`);
-    // logInfo(`propiedad: ${propiedad(4)}`)
-    // logInfo(`propiedad: ${propiedad()}`);
-    logInfo(fn(4, 6, 8, 1, 2, 3, 4, 5));
-    logInfo(fn(4, 6, 8, 1, 2, 3, 4, 5));
-    (function() { 
-      var a = 100;
-      logInfo(a);
-      logInfo('al vuelo')
-    })()
+    Persona.prototype.edadJubilacion = 67
+    Persona.prototype.fullname = function () {
+      return this.nombre + ' ' + this.apellidos
+    }
+    Persona.prototype.tieneTelefonos = function () {
+      return this.telefonos && this.telefonos.length > 0
+    }
+    Persona.prototype.estaJubilado = function () {
+      return this.edad != undefined && this.edad > this.edadJubilacion
+    }
+    function Empleado(nombre, apellidos, telefonos, edad) {
+      this.nombre = nombre
+      this.apellidos = apellidos
+      this.telefonos = telefonos
+      this.edad = edad
+    }
+    Empleado.prototype = Persona.prototype
+    Empleado.prototype.otra = 67
+
+    var p1 = new Persona('Pepito', 'Grillo', ["555 111 111", '555 777 123'], 23)
+    // logInfo(JSON.stringify(p1))
+    muestra('p1', p1)
+    var p2 = new Persona('Carmelo', 'Coton')
+    console.log(window)
+    // logInfo(JSON.stringify(p2))
+    muestra('p2', p2)
+    // p2.fullname = function () {
+    //     return this.apellidos + ', ' + this.nombre
+    //   }
+
+    p1.edas = 'otro'
+    p1.telefonos = function() {}
+    // logInfo(JSON.stringify(p1))
+    muestra('p1', p1)
+    // for(var indice in obj) {
+    //   logInfo(indice)
+    // }
+    // for(var indice in obj) {
+    //   logInfo(obj[indice])
+    // }
+    var personas = []
+    personas.push(p1)
+    personas.push(p2)
+    // logInfo(JSON.stringify(personas))
+    for (var indice in personas) {
+      logInfo(personas[indice].fullname() + 
+        (personas[indice].tieneTelefonos ? ' con' : ' sin') + ' telefonos' +
+        (personas[indice].estaJubilado ? ' y esta jubilado' : ' y no esta jubilado')
+      )
+    }
+    logInfo(p1.fullname === p2.fullname ?'si':'no')
+    logInfo(p1.tieneTelefonos === p2.tieneTelefonos ?'si':'no')
   </script>
 </body>
 
